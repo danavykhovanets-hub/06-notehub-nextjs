@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header/Header";
+import TanStackProvider from "./components/TanStackProvider/TanStackProvider";
+import { ReactNode } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,14 +21,11 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <TanStackProvider>
         <Header />
         <main>{children}</main>
         <footer>
@@ -34,6 +33,7 @@ export default function RootLayout({
             Created <time dateTime='2025'>2025</time>
           </p>
         </footer>
+        </TanStackProvider>
       </body>
     </html>
   );
